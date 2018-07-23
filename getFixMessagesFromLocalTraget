@@ -1,0 +1,101 @@
+import os
+import time
+import csv
+
+# LISTS
+listLogon = []
+listLogout = []
+listTestRequest = []
+listResendRequest = []
+listSessionLevelReject = []
+listSequenceReset = []
+listMarketDataRequest = []
+listMarketDataFullRefresh = []
+listBusinessMessageReject = []
+
+# LOG OUTPUT FILES
+fileLogon = open('C:/','w')
+fileLogout = open('C:/','w')
+fileTestRequest = open('C:/','w')
+fileResendRequest = open('C:/','w')
+fileSessionLevelReject = open('C:/','w')
+fileSequenceReset = open('C:/','w')
+fileMarketDataRequest = open('C:/','w')
+fileMarketDataFullRefresh = open('C:/','w')
+fileBusinessMessageReject = open('C:/','w')
+
+# GET MESSAGES FROM LOG
+start_time = time.time()
+print('[STARTING MESSAGE EXTRACTION]:')
+logPath = 'C:/'
+filelist = os.listdir(logPath)
+for file in filelist:
+    if file.endswith('.log'):
+        with open(logPath + file, 'r') as log:
+            for line in log:
+                if '35=A' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listLogon:
+                        listLogon.append(line)
+                        fileLogon.write(line)
+                if '35=5' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listLogout:
+                        listLogout.append(line)
+                        fileLogout.write(line)
+                if '35=1' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listTestRequest:
+                        listTestRequest.append(line)
+                        fileTestRequest.write(line)
+                if '35=2' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listResendRequest:
+                        listResendRequest.append(line)
+                        fileResendRequest.write(line)
+                if '35=3' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listSessionLevelReject:
+                        listSessionLevelReject.append(line)
+                        fileSessionLevelReject.write(line)
+                if '35=4' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listSequenceReset:
+                        listSequenceReset.append(line)
+                        fileSequenceReset.write(line)
+                if '35=V' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listMarketDataRequest:
+                        listMarketDataRequest.append(line)
+                        fileMarketDataRequest.write(line)
+                if '35=W' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listMarketDataFullRefresh:
+                        listMarketDataFullRefresh.append(line)
+                        fileMarketDataFullRefresh.write(line)
+                if '35=j' in line:
+                    line = line.split(' ')
+                    line = line[2]
+                    line = line.replace('',';')
+                    if line not in listBusinessMessageReject:
+                        listBusinessMessageReject.append(line)
+                        fileBusinessMessageReject.write(line)
+endTime = int(time.time() - start_time)
+print('[FINISHED MESSAGE EXTRACTION]:')
+print('[TIME ELAPSED]: {:02d}:{:02d}:{:02d}'.format(endTime // 3600, (endTime % 3600 // 60), endTime % 60))
