@@ -1,0 +1,193 @@
+import os
+import time
+import csv
+
+csvPath = 'C:/'
+logsPath = 'C:/'
+
+# EXPORT MESSAGES TO CSV
+print('[STARTED EXPORT TO CSV]:')
+start_time = time.time()
+print('[START]:', 'msgLogon.csv')
+fileLogon = open('C:/','r')
+with open(csvPath + 'msgLogon.csv', 'w', newline='') as csvLogon:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','50','34','52','98','180','141','553','554','1408','10']}
+    csvWriter = csv.DictWriter(csvLogon, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileLogon:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','50','34','52','98','180','141','553','554','1408','10']}
+csvLogon.close()
+print('[END]:', 'msgLogon.csv')
+
+print('[START]:', 'MsgLogout.csv')
+fileLogout = open('C:/','r')
+with open(csvPath + 'MsgLogout.csv', 'w', newline='') as csvLogout:
+    msgDict = {key: [] for key in ['8', '9', '35','34','49','52','56','58','10']}
+    csvWriter = csv.DictWriter(csvLogout, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileLogout:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            if tag in line:
+                tag = tag.split('=')
+                msgDict[tag[0]] = tag[1]
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35','34','49','52','56','58','10']}
+csvLogout.close()
+print('[END]:', 'MsgLogout.csv')
+
+print('[START]:', 'MsgTestRequest.csv')
+fileMsgTestRequest = open('C:/','r')
+with open(csvPath + 'MsgTestRequest.csv', 'w', newline='') as csvTestRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','112','10']}
+    csvWriter = csv.DictWriter(csvTestRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMsgTestRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','112','10']}
+csvTestRequest.close()
+print('[END]:', 'MsgTestRequest.csv')
+
+print('[START]:', 'MsgResendRequest.csv')
+fileMsgResendRequest = open('C:/','r')
+with open(csvPath + 'MsgResendRequest.csv', 'w', newline='') as csvResendRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','7','16','10']}
+    csvWriter = csv.DictWriter(csvResendRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMsgResendRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','7','16','10']}
+csvResendRequest.close()
+print('[END]:', 'MsgResendRequest.csv')
+
+print('[START]:', 'MsgSessionLevelReject.csv')
+fileSessionLevelReject = open('C:/','r')
+with open(csvPath + 'MsgSessionLevelReject.csv', 'w', newline='') as csvessionLevelReject:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','371','372','373','58','10']}
+    csvWriter = csv.DictWriter(csvessionLevelReject, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileSessionLevelReject:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','371','372','373','58','10']}
+csvessionLevelReject.close()
+print('[END]:', 'MsgSessionLevelReject.csv')
+
+print('[START]:', 'MsgSequenceReset.csv')
+fileSequenceReset = open('C:/','r')
+with open(csvPath + 'MsgSequenceReset.csv', 'w', newline='') as csvSequenceReset:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','123','36','10']}
+    csvWriter = csv.DictWriter(csvSequenceReset, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileSequenceReset:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','123','36','10']}
+csvSequenceReset.close()
+print('[END]:', 'MsgSequenceReset.csv')
+
+print('[START]:', 'MsgMarketDataRequest.csv')
+fileMarketDataRequest = open('C:/','r')
+with open(csvPath + 'MsgMarketDataRequest.csv', 'w', newline='') as csvMarketDataRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','128','262','263','264','265','267','269','146','55','167','63','12008','64','193','271','1201','1202','1300','10']}
+    csvWriter = csv.DictWriter(csvMarketDataRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMarketDataRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','128','262','263','264','265','267','269','146','55','167','63','12008','64','193','271','1201','1202','1300','10']}
+csvMarketDataRequest.close()
+print('[END]:', 'MsgMarketDataRequest.csv')
+
+print('[START]:', 'MsgMarketDataFullRefresh.csv')
+fileMarketDataFullRefresh= open('C:/','r')
+with open(csvPath + 'MsgMarketDataFullRefresh.csv', 'w', newline='') as csvMarketDataFullRefresh:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','55','167','63','1026','12005','1027','12007','271','269','110','273','278','282','1300','10']}
+    csvWriter = csv.DictWriter(csvMarketDataFullRefresh, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMarketDataFullRefresh:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','55','167','63','1026','12005','1027','12007','271','269','110','273','278','282','1300','10']}
+csvMarketDataFullRefresh.close()
+print('[END]:', 'MsgMarketDataFullRefresh.csv')
+
+print('[START]:', 'MsgBusinessMessageReject.csv')
+fileBusinessMessageReject = open('C:/','r')
+with open(csvPath + 'MsgBusinessMessageReject.csv', 'w', newline='') as csvBusinessMessageReject:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','372','379','380','58','354','355','10']}
+    csvWriter = csv.DictWriter(csvBusinessMessageReject, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileBusinessMessageReject:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','372','379','380','58','354','355','10']}
+csvBusinessMessageReject.close()
+print('[END]:', 'MsgBusinessMessageReject.csv')
+
+endTime = int(time.time() - start_time)
+print('[FINISHED EXPORT TO CSV]:')
+print('[TIME ELAPSED]: {:02d}:{:02d}:{:02d}'.format(endTime // 3600, (endTime % 3600 // 60), endTime % 60))
