@@ -2,7 +2,7 @@ import os
 import time
 import csv
 
-rawData = 'C:/Users/apanasenko/Desktop/LOGS/Results/'
+rawData = ''
 
 # EXPORT MESSAGES TO CSV
 print('[STARTED EXPORT TO CSV]:')
