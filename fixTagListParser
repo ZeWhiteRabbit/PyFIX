@@ -3,7 +3,7 @@ import time
 import re
 
 #DataPath
-fhand = open('C:/Users/apanasenko/Desktop/LOGS/Results/TAKER_LN_ALL_W_09_2018.log', 'r')
+fhand = open('', 'r')
 
 #List
 keyList = []
