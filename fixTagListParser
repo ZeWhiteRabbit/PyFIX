@@ -1,0 +1,26 @@
+import os
+import time
+import re
+
+#DataPath
+fhand = open('C:/Users/apanasenko/Desktop/LOGS/Results/TAKER_LN_ALL_W_09_2018.log', 'r')
+
+#List
+keyList = []
+
+#GetTagFromMessage
+start_time = time.time()
+print('[STARTED]')
+for line in fhand:
+    line = line.rstrip()
+    line = line.split('')
+    X = len(line) - 1
+    line = line[0:X]
+    #print(line)
+    for tag in line:
+        tag = tag.split('=')
+        if tag[0] not in keyList:
+            keyList.append(tag[0])
+endTime = int(time.time() - start_time)
+print('[PARSED TAG KEY VALUES]:', keyList)
+print('[TIME ELAPSED]: {:02d}:{:02d}:{:02d}'.format(endTime // 3600, (endTime % 3600 // 60), endTime % 60))
