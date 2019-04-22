@@ -1,0 +1,322 @@
+import os
+import time
+import csv
+
+rawData = 'C:/Users/apanasenko/Desktop/LOGS/Results/'
+
+# EXPORT MESSAGES TO CSV
+print('[STARTED EXPORT TO CSV]:')
+start_time = time.time()
+print('[START]:', 'msgLogon.csv')
+fileLogon = open(rawData + 'MsgLogon.log', 'r')
+with open(rawData + 'MsgLogon.csv', 'w', newline='') as csvLogon:
+    msgDict = {key: [] for key in ['8', '9', '35', '49', '56', '50', '34', '52', '98', '180', '141', '553', '554',
+                                   '1408', '10']}
+    csvWriter = csv.DictWriter(csvLogon, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileLogon:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49', '56', '50', '34', '52', '98', '180', '141', '553', '554',
+                                       '1408', '10']}
+csvLogon.close()
+print('[END]:', 'msgLogon.csv')
+
+
+print('[START]:', 'MsgLogout.csv')
+fileLogout = open(rawData + 'MsgLogout.log','r')
+with open(rawData + 'MsgLogout.csv', 'w', newline='') as csvLogout:
+    msgDict = {key: [] for key in ['8', '9', '35','34','49','52','56','58','10']}
+    csvWriter = csv.DictWriter(csvLogout, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileLogout:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            if tag in line:
+                tag = tag.split('=')
+                msgDict[tag[0]] = tag[1]
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35','34','49','52','56','58','10']}
+csvLogout.close()
+print('[END]:', 'MsgLogout.csv')
+
+
+print('[START]:', 'MsgTestRequest.csv')
+fileMsgTestRequest = open(rawData + 'MsgTestRequest.log','r')
+with open(rawData + 'MsgTestRequest.csv', 'w', newline='') as csvTestRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','112','10']}
+    csvWriter = csv.DictWriter(csvTestRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMsgTestRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','112','10']}
+csvTestRequest.close()
+print('[END]:', 'MsgTestRequest.csv')
+
+
+print('[START]:', 'MsgResendRequest.csv')
+fileMsgResendRequest = open(rawData + 'MsgResendRequest.log','r')
+with open(rawData + 'MsgResendRequest.csv', 'w', newline='') as csvResendRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','7','16','10']}
+    csvWriter = csv.DictWriter(csvResendRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMsgResendRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','7','16','10']}
+csvResendRequest.close()
+print('[END]:', 'MsgResendRequest.csv')
+
+
+print('[START]:', 'MsgSessionLevelReject.csv')
+fileSessionLevelReject = open(rawData + 'MsgSessionLevelReject.log','r')
+with open(rawData + 'MsgSessionLevelReject.csv', 'w', newline='') as csvessionLevelReject:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','371','372','373','58','10']}
+    csvWriter = csv.DictWriter(csvessionLevelReject, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileSessionLevelReject:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','371','372','373','58','10']}
+csvessionLevelReject.close()
+print('[END]:', 'MsgSessionLevelReject.csv')
+
+
+print('[START]:', 'MsgSequenceReset.csv')
+fileSequenceReset = open(rawData + 'MsgSequenceReset.log','r')
+with open(rawData + 'MsgSequenceReset.csv', 'w', newline='') as csvSequenceReset:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','123','36','10']}
+    csvWriter = csv.DictWriter(csvSequenceReset, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileSequenceReset:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','123','36','10']}
+csvSequenceReset.close()
+print('[END]:', 'MsgSequenceReset.csv')
+
+
+print('[START]:', 'MsgMarketDataRequest.csv')
+fileMarketDataRequest = open(rawData + 'MsgMarketDataRequest.log','r')
+with open(rawData + 'MsgMarketDataRequest.csv', 'w', newline='') as csvMarketDataRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','128','262','263','264','265','267','269','146',
+                                   '55','167','63','12008','64','193','271','1201','1202','12003','1300','10']}
+    csvWriter = csv.DictWriter(csvMarketDataRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMarketDataRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','128','262','263','264','265','267','269',
+                                       '146','55','167','63','12008','64','193','271','1201','1202','1300','10']}
+csvMarketDataRequest.close()
+print('[END]:', 'MsgMarketDataRequest.csv')
+
+
+print('[START]:', 'MsgMarketDataFullRefresh.csv')
+fileMarketDataFullRefresh= open(rawData + 'MsgMarketDataFullRefresh.log','r')
+with open(rawData + 'MsgMarketDataFullRefresh.csv', 'w', newline='') as csvMarketDataFullRefresh:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','55','167','63','1026','12005','1027',
+                                   '12007','271','269','110','273','278','282','1300','10']}
+    csvWriter = csv.DictWriter(csvMarketDataFullRefresh, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMarketDataFullRefresh:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','55','167','63','1026','12005','1027',
+                                       '12007','271','269','110','273','278','282','1300','10']}
+csvMarketDataFullRefresh.close()
+print('[END]:', 'MsgMarketDataFullRefresh.csv')
+
+
+print('[START]:', 'MsgBusinessMessageReject.csv')
+fileBusinessMessageReject = open(rawData + 'MsgBusinessMessageReject.log','r')
+with open(rawData + 'MsgBusinessMessageReject.csv', 'w', newline='') as csvBusinessMessageReject:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','372','379','380','58','354','355','10']}
+    csvWriter = csv.DictWriter(csvBusinessMessageReject, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileBusinessMessageReject:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','45','372','379','380','58','354','355',
+                                       '10']}
+csvBusinessMessageReject.close()
+print('[END]:', 'MsgBusinessMessageReject.csv')
+
+
+print('[START]:', 'MsgMarketDataRequestReject.csv')
+fileMarketDataRequestReject = open(rawData + 'MsgMarketDataRequestReject.log','r')
+with open(rawData + 'MsgMarketDataRequestReject.csv', 'w', newline='') as csvMarketDataRequestReject:
+    msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','281','58','10']}
+    csvWriter = csv.DictWriter(csvMarketDataRequestReject, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMarketDataRequestReject:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49','56','34','52','262','281','58','10']}
+csvMarketDataRequestReject.close()
+print('[END]:', 'MsgMarketDataRequestReject.csv')
+
+
+print('[START]:', 'MsgExecutionReport.csv')
+fileMsgExecutionReport = open(rawData + 'MsgExecutionReport.log', 'r')
+with open(rawData + 'MsgExecutionReport.csv', 'w', newline='') as csvExecutionReport:
+    msgDict = {key: [] for key in ['8', '9', '35', '34', '49', '52', '56', '1', '6', '11', '14', '15', '17', '37',
+                                   '38', '39', '40', '44', '54', '55', '58', '31', '32', '60', '63', '64', '75', '150',
+                                   '151', '167', '453', '448', '447', '452', '527', '1300', '10']}
+    csvWriter = csv.DictWriter(csvExecutionReport, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMsgExecutionReport:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '34', '49', '52', '56', '1', '6', '11', '14', '15', '17', '37',
+                                       '38', '39', '40', '44', '54', '55', '58', '31', '32', '60', '63', '64', '75', '150',
+                                       '151', '167', '453', '448', '447', '452', '527', '1300', '10']}
+csvExecutionReport.close()
+print('[END]:', 'MsgExecutionReport.csv')
+
+
+print('[START]:', 'MsgNewSingleOrder.csv')
+fileNewSingleOrder = open(rawData + 'MsgNewSingleOrder.log', 'r')
+with open(rawData + 'MsgNewSingleOrder.csv', 'w', newline='') as csvNewSingleOrder:
+    msgDict = {key: [] for key in ['8', '9', '35', '34', '49', '50', '52', '56', '57', '1', '11', '15', '21',
+                                   '38', '40', '54', '55', '59', '60', '117', '10']}
+    csvWriter = csv.DictWriter(csvNewSingleOrder, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileNewSingleOrder:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '34', '49', '50', '52', '56', '57', '1', '11', '15', '21',
+                                       '38', '40', '54', '55', '59', '60', '117', '10']}
+csvNewSingleOrder.close()
+print('[END]:', 'MsgNewSingleOrder.csv')
+
+
+print('[START]:', 'MsgQuoteRequest.csv')
+fileQuoteRequest = open(rawData + 'MsgQuoteRequest.log', 'r')
+with open(rawData + 'MsgQuoteRequest.csv', 'w', newline='') as csvQuoteRequest:
+    msgDict = {key: [] for key in ['8', '9', '35', '49', '52', '56', '57', '131', '146', '55', '303', '38',
+                                   '15', '10']}
+    csvWriter = csv.DictWriter(csvQuoteRequest, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileQuoteRequest:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49', '52', '56', '57', '131', '146', '55', '303', '38',
+                                       '15', '10']}
+csvQuoteRequest.close()
+print('[END]:', 'MsgQuoteRequest.csv')
+
+print('[START]:', 'MsgMassQuate.csv')
+fileMassQuate = open(rawData + 'MsgMassQuate.log', 'r')
+with open(rawData + 'MsgMassQuate.csv', 'w', newline='') as csvMassQuate:
+    msgDict = {key: [] for key in ['8', '9', '35', '49', '56', '34', '52', '537', '117', '296', '302', '304',
+                                   '295', '299', '55', '15', '60', '64', '134', '135', '188', '190', '132', '133',
+                                   '10']}
+    csvWriter = csv.DictWriter(csvMassQuate, msgDict.keys())
+    csvWriter.writeheader()
+    for line in fileMassQuate:
+        line = line.rstrip()
+        line = line.split(';')
+        X = len(line) - 1
+        line = line[0:X]
+        for tag in line:
+            name, val = tag.split('=')
+            if name in msgDict:
+                msgDict[name].append(val)
+        csvWriter.writerow(msgDict)
+        msgDict = {key: [] for key in ['8', '9', '35', '49', '56', '34', '52', '537', '117', '296', '302', '304',
+                                       '295', '299', '55', '15', '60', '64', '134', '135', '188', '190', '132', '133',
+                                       '10']}
+csvMassQuate.close()
+print('[END]:', 'MsgMassQuate.csv')
+endTime = int(time.time() - start_time)
+print('[FINISHED EXPORT TO CSV]:')
+print('[TIME ELAPSED]: {:02d}:{:02d}:{:02d}'.format(endTime // 3600, (endTime % 3600 // 60), endTime % 60))
